@@ -120,10 +120,10 @@ function finishGame(
   incrementWinnerCount: () => void,
 ) {
   if (winner === null || winnerPatternIds === null) {
-    Alert.alert("El juego ha terminado", "Nadie ha ganado");
+    Alert.alert("The game has end", "No one has won");
   } else {
     const winnerPlayer = winner === "p1" ? "1" : "2";
-    Alert.alert("El juego ha terminado", `El jugador ${winnerPlayer} ha ganado`);
+    Alert.alert("The game has end", `Player ${winnerPlayer} has won`);
     let newBoxState: ThreeInRowBoxCellProps[][] = [];
     for (let boxRow of boxState) {
       const newBoxRow: ThreeInRowBoxCellProps[] = boxRow.map((cellItem: ThreeInRowBoxCellProps) => {
