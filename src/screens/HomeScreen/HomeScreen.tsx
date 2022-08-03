@@ -3,15 +3,15 @@ import { View, ScrollView, Text } from 'react-native';
 import GamePresentation from '../../components/GamePresentation/GamePresentation';
 import styles from './HomeScreenStyle';
 
-function HomeScreen() {
+function HomeScreen({navigation}) {
   return (
-    <View style={styles.container}>
+    <View style={styles.screenContainer}>
       <ScrollView>
-        <Text style={styles.header}>Choose your game</Text>
+        <Text style={styles.textHeader}>Choose your game</Text>
         <GamePresentation
-          name="Three in a row"
-          description="Match three in a row your oponent"
-          onPress={() => {}}
+          name="Three in row"
+          description="Match three in row before your oponent"
+          onPress={() => navigation.navigate("ThreeInRow")}
         />
       </ScrollView>
     </View>

@@ -27,6 +27,13 @@ const metrics = {
   spacing: {
     base: normalize(16),
   },
+  bordering: {
+    tiny: 5,
+    small: 15,
+    medium: 25,
+    big: 50,
+    huge: 100,
+  },
 };
 
 export default metrics;

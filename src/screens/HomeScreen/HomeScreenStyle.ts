@@ -1,17 +1,9 @@
 import { StyleSheet } from 'react-native';
 import { colors, metrics } from '../../theme';
+import globalStyles from '../../theme/globalStyles';
 
 const styles = StyleSheet.create({
-  container: {
-    padding: metrics.spacing.base,
-    backgroundColor: colors.primaryBackground,
-    flex: 1,
-  },
-  header: {
-    fontSize: metrics.fontSize.s28,
-    color: colors.primaryText,
-    paddingBottom: metrics.spacing.base,
-  },
+  ...globalStyles,
 });
 
 export default styles;

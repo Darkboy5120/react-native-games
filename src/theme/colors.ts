@@ -9,12 +9,13 @@ const palette = {
 };
 
 const colors = {
-  primaryBackground: palette.softYellow,
-  secondaryBackground: palette.darkRed,
+  primaryBackground: palette.white,
+  secondaryBackground: palette.softYellow,
   primaryInteraction: palette.gold,
   secondaryInteraction: palette.red,
   primaryText: palette.fancyDarkBlue,
   secondaryText: palette.darkRed,
+  shadow: palette.black,
 };
 
 export default colors;

@@ -5,18 +5,16 @@ import globalStyles from '../../theme/globalStyles';
 const styles = StyleSheet.create({
   container: {
     ...globalStyles.genericShadow,
-    padding: metrics.spacing.base,
-    backgroundColor: colors.secondaryBackground,
     borderRadius: metrics.bordering.small,
-    marginVertical: metrics.spacing.base * .5,
+    backgroundColor: colors.primaryText,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: metrics.spacing.base * .5,
   },
-  name: {
-    color: colors.primaryText,
+  text: {
     fontSize: metrics.fontSize.s20,
-  },
-  description: {  
-    color: colors.secondaryText,
-    fontSize: metrics.fontSize.s16,
+    color: colors.primaryBackground,
   },
 });
 
