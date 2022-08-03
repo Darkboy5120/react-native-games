@@ -19,7 +19,18 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexGrow: 1,
-  }
+  },
+  winsRowContainer: {
+    paddingHorizontal: metrics.spacing.base,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  winsLabel: {
+    fontSize: metrics.fontSize.s20,
+    color: colors.primaryText,
+    fontWeight: '500',
+  },
 });
 
 export default styles;

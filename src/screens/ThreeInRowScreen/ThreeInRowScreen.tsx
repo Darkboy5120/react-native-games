@@ -117,6 +117,7 @@ function finishGame(
   winnerPatternIds: string[] | null,
   boxState: ThreeInRowBoxCellProps[][],
   setBoxState: any,
+  incrementWinnerCount: () => void,
 ) {
   if (winner === null || winnerPatternIds === null) {
     Alert.alert("El juego ha terminado", "Nadie ha ganado");
@@ -138,6 +139,17 @@ function finishGame(
     }
     setBoxState(newBoxState);
   }
+  incrementWinnerCount();
+}
+
+function getIncrementWinnerCount(winnerCounts, setWinnerCounts, winner) {
+  return () => {
+    const newWinnerCounts = [
+      ...winnerCounts,
+    ];
+    newWinnerCounts[winner === "p1" ? 0 : 1] += 1;
+    setWinnerCounts(newWinnerCounts);
+  }
 }
 
 function ThreeInRowScreen({navigation}) {
@@ -149,6 +161,7 @@ function ThreeInRowScreen({navigation}) {
   const [boxState, setBoxState] = useState<ThreeInRowBoxCellProps[]>(getInitialBoxState());
   const [playerTurn, setPlayerTurn] = useState<ThreeInRowCellPlayer>("p1");
   const [gameIsDone, setGameIsDone] = useState<boolean>(false);
+  const [winnerCounts, setWinnerCounts] = useState<[number, number]>([0, 0]);
 
   const onCellPressed = (cellItem: ThreeInRowBoxCellProps) => {
     const newBoxState: ThreeInRowBoxCellProps[][] = getNewBoxState(cellItem, boxState, playerTurn);
@@ -157,8 +170,9 @@ function ThreeInRowScreen({navigation}) {
     const { allCellsCompleted, winner, winnerPatternIds } = getGameStatus(newBoxState);
     const _gameIsDone = allCellsCompleted || winner !== null;
     if (_gameIsDone) {
+      const incrementWinnerCount = getIncrementWinnerCount(winnerCounts, setWinnerCounts, winner);
       setGameIsDone(true);
-      finishGame(winner, winnerPatternIds, newBoxState, setBoxState);
+      finishGame(winner, winnerPatternIds, newBoxState, setBoxState, incrementWinnerCount);
     }
   }
 
@@ -187,6 +201,11 @@ function ThreeInRowScreen({navigation}) {
               </View>
             );
           })}
+        </View>
+        <View style={styles.winsRowContainer}>
+          <Text style={styles.winsLabel}>Wins</Text>
+          <Text style={styles.winsLabel}>Player1: {winnerCounts[0]}</Text>
+          <Text style={styles.winsLabel}>Player2: {winnerCounts[1]}</Text>
         </View>
         {gameIsDone && (
           <CustomButton title="Reset" onPress={() => {
