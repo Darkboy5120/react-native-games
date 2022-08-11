@@ -152,7 +152,7 @@ function getIncrementWinnerCount(winnerCounts, setWinnerCounts, winner) {
   }
 }
 
-function ThreeInRowScreen({navigation}) {
+function ThreeInRowScreen() {
   const [boxWidth, setBoxWidth] = useState<number>();
   const boxContainerStyle = [
     {height: boxWidth},
