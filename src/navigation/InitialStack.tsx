@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import ThreeInRowScreen from '../screens/ThreeInRowScreen/ThreeInRowScreen';
+import SnakeGameScreen from '../screens/SnakeGameScreen';
 import globalStyles from '../theme/globalStyles';
 
 type RootStackParamList = {
   Home: undefined;
   ThreeInRow: undefined;
+  SnakeGame: undefined;
 };
 
 function getScreenSettings() {
@@ -26,16 +28,17 @@ function getScreenSettings() {
   };
 }
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 function InitialStack() {
   const { genericScreen } = getScreenSettings();
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerTintColor: 'red'}}>
-        <Stack.Screen {...genericScreen("Home", "Home")} component={HomeScreen} />
-        <Stack.Screen {...genericScreen("ThreeInRow", "Three in row")} component={ThreeInRowScreen} />
-      </Stack.Navigator>
+      <RootStack.Navigator screenOptions={{headerTintColor: 'red'}}>
+        <RootStack.Screen {...genericScreen("Home", "Home")} component={HomeScreen} />
+        <RootStack.Screen {...genericScreen("ThreeInRow", "Three in row")} component={ThreeInRowScreen} />
+        <RootStack.Screen {...genericScreen("SnakeGame", "Snake game")} component={SnakeGameScreen} />
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 }

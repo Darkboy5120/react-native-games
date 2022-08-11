@@ -13,6 +13,11 @@ function HomeScreen({navigation}) {
           description="Match three in row before your oponent"
           onPress={() => navigation.navigate("ThreeInRow")}
         />
+        <GamePresentation
+          name="Snake game"
+          description="Try to survive without eating yourself"
+          onPress={() => navigation.navigate("SnakeGame")}
+        />
       </ScrollView>
     </View>
   );
