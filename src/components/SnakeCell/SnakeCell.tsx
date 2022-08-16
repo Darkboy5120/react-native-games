@@ -8,6 +8,7 @@ interface SnakeCellProps {
   heightDividor: number;
   widthDividor: number;
   focus: boolean;
+  key: string;
 }
 
 function SnakeCell({focus, parentWidth = 1, heightDividor, widthDividor} : SnakeCellProps) {

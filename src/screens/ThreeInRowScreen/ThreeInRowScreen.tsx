@@ -4,6 +4,7 @@ import ThreeInRowBoxCell from '../../components/ThreeInRowBoxCell/ThreeInRowBoxC
 import styles from './ThreeInRowStyle';
 import { ThreeInRowCellPlayer, ThreeInRowBoxCellProps } from '../../models/ThreeInRowCell.model';
 import CustomButton from '../../components/CustomButton';
+import { genCustomIdentifier } from '../../utils/childManager';
 
 const wininigPatterns = [
   //horizontal matches
@@ -18,10 +19,6 @@ const wininigPatterns = [
   [[0, 0], [1, 1], [2, 2]],
   [[2, 0], [1, 1], [0, 2]]
 ];
-
-function genCustomIdentifier(label = "") {
-  return `${label}${Math.floor(Math.random() * 100000)}`;
-}
 
 function getInitialBoxState() {
   const boxLength = 3;
