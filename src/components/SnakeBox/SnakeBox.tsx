@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import SnakeCell from '../SnakeCell';
-import { genCustomIdentifier } from '../../utils/childManager';
 import styles from './SnakeBoxStyle';
+import { Joystick } from 'react-joystick-component';
 
 interface SnakeBoxProps {
 }
@@ -152,6 +152,7 @@ function SnakeBox({} : SnakeBoxProps) {
           widthDividor={_globals.widthDivisor}
         />
       })}
+      <Joystick start={() => console.log(123)} move={() => console.log(111)} />
     </View>
   );
 }
