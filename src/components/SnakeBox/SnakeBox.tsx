@@ -55,14 +55,14 @@ function getInitialState() {
 
 function getFixedCellPosition(cell: SnakeBodyCell) {
   let fixedCell: SnakeBodyCell = cell;
-  if (cell[0] >= _globals.widthDivisor) {
-    fixedCell = [0, cell[1]]
-  } else if (cell[0] < 0) {
-    fixedCell = [_globals.widthDivisor - 1, cell[1]];
-  } else if (cell[1] >= _globals.widthDivisor) {
+  if (cell[1] >= _globals.widthDivisor) {
     fixedCell = [cell[0], 0];
   } else if (cell[1] < 0) {
-    fixedCell = [cell[0], _globals.heightDivisor - 1]
+    fixedCell = [cell[0], _globals.widthDivisor - 1];
+  } else if (cell[0] >= _globals.widthDivisor) {
+    fixedCell = [0, cell[1]];
+  } else if (cell[0] < 0) {
+    fixedCell = [_globals.heightDivisor - 1, cell[1]]
   }
   return fixedCell;
 }
@@ -70,10 +70,10 @@ function getFixedCellPosition(cell: SnakeBodyCell) {
 function getUpdatedCellPosition(cell: SnakeBodyCell, direction: SnakeDirection) {
   let updatedCell: SnakeBodyCell;
   switch(direction) {
-    case "bottom": updatedCell = [cell[0], cell[1]++];break;
-    case "left": updatedCell = [cell[0]--, cell[1]];break;
-    case "right": updatedCell = [cell[0]++, cell[1]++];break;
-    case "top": updatedCell = [cell[0], cell[1]--];break;
+    case "bottom": updatedCell = [cell[0]+=1, cell[1]];break;
+    case "left": updatedCell = [cell[0], cell[1]-=1];break;
+    case "right": updatedCell = [cell[0], cell[1]+=1];break;
+    case "top": updatedCell = [cell[0]-=1, cell[1]];break;
   }
   const fixedCellPosition = getFixedCellPosition(updatedCell);
   return fixedCellPosition;
@@ -92,10 +92,7 @@ function getUpdatedSnake(snake: SnakeState) {
 }
 
 function parseSnakeBodyCell(snakeBodyCell: SnakeBodyCell) {
-  if (snakeBodyCell[0] === 0 && snakeBodyCell[1] === 0) {
-    return 0;
-  }
-  return (snakeBodyCell[0] + 1) * (snakeBodyCell[1] + 1);
+  return (snakeBodyCell[0] * 10) + snakeBodyCell[1];
 }
 
 function getUpdatedGameFrames(snakeBody: SnakeBodyCell[]) {
@@ -123,13 +120,13 @@ function useSnakeState() {
   const [snake, setSnake] = useState<SnakeState>(getInitialState().snake);
 
   useEffect(() => {
-    const loop = setInterval(() => {
-      const { updatedCells, updatedSnake  } = getNextFrame(snake);
+    const loop = setTimeout(() => {
+      const { updatedCells, updatedSnake } = getNextFrame(snake);
       setSnake(updatedSnake);
       setFrames(updatedCells);
     }, _globals.frameRate);
-    return () => clearInterval(loop);
-  }, []);
+    return () => clearTimeout(loop);
+  }, [snake]);
 
   return {
     frames, snake,
@@ -146,9 +143,9 @@ function SnakeBox({} : SnakeBoxProps) {
       const { width } = event.nativeEvent.layout;
       setBoxWidth(width);
     }}>
-      {frames.map((frame: GameFrame) => {
+      {frames.map((frame: GameFrame, index) => {
         return <SnakeCell
-          key={genCustomIdentifier("snakecell_")}
+          key={`snakecell_${index}`}
           focus={frame === "1"}
           parentWidth={boxWidth}
           heightDividor={_globals.heightDivisor}
