@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import SnakeCell from '../SnakeCell';
 import styles from './SnakeBoxStyle';
-import { Joystick } from 'react-joystick-component';
 
 interface SnakeBoxProps {
 }
@@ -32,7 +31,6 @@ let _globals: GlobalStatus = {
   frameRate: 200,
 };
 _globals.initialGameFrames = getInitialCells();
-
 
 function getInitialCells() {
   const arr: GameFrame[] = [];
@@ -152,7 +150,6 @@ function SnakeBox({} : SnakeBoxProps) {
           widthDividor={_globals.widthDivisor}
         />
       })}
-      <Joystick start={() => console.log(123)} move={() => console.log(111)} />
     </View>
   );
 }
