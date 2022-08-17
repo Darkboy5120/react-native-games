@@ -125,7 +125,7 @@ function useSnakeState() {
     const loop = setTimeout(() => {
       const { updatedCells, updatedSnake } = getNextFrame(snake);
       setSnake(updatedSnake);
-      setFrames(updatedCells);
+      if (updatedCells !== undefined) setFrames(updatedCells);
     }, _globals.frameRate);
     return () => clearTimeout(loop);
   }, [snake]);
