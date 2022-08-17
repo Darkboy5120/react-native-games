@@ -32,7 +32,7 @@ let _globals: GlobalStatus = {
 };
 _globals.initialGameFrames = getInitialCells();
 
-function getInitialCells() {
+export function getInitialCells() {
   const arr: GameFrame[] = [];
   for (let i = 0; i < (_globals.widthDivisor * _globals.heightDivisor); i++) {
     arr.push("0");
@@ -51,16 +51,16 @@ function getInitialState() {
   };
 }
 
-function getFixedCellPosition(cell: SnakeBodyCell) {
+export function getFixedCellPosition(cell: SnakeBodyCell) {
   let fixedCell: SnakeBodyCell = cell;
   if (cell[1] >= _globals.widthDivisor) {
-    fixedCell = [cell[0], 0];
+    fixedCell[1] = 0;
   } else if (cell[1] < 0) {
-    fixedCell = [cell[0], _globals.widthDivisor - 1];
-  } else if (cell[0] >= _globals.widthDivisor) {
-    fixedCell = [0, cell[1]];
+    fixedCell[1] = _globals.widthDivisor - 1;
+  } else if (cell[0] >= _globals.heightDivisor) {
+    fixedCell[0] = 0;
   } else if (cell[0] < 0) {
-    fixedCell = [_globals.heightDivisor - 1, cell[1]]
+    fixedCell[0] = _globals.heightDivisor - 1;
   }
   return fixedCell;
 }
@@ -93,7 +93,7 @@ function parseSnakeBodyCell(snakeBodyCell: SnakeBodyCell) {
   return (snakeBodyCell[0] * 10) + snakeBodyCell[1];
 }
 
-function getUpdatedGameFrames(snakeBody: SnakeBodyCell[]) {
+export function getUpdatedGameFrames(snakeBody: SnakeBodyCell[]) {
   const updatedGameFrames = _globals.initialGameFrames?.map((frame: GameFrame, index) => {
     if (snakeBody.filter((snakeBodyCell: SnakeBodyCell) =>
       index === parseSnakeBodyCell(snakeBodyCell)).length > 0) {
@@ -105,7 +105,7 @@ function getUpdatedGameFrames(snakeBody: SnakeBodyCell[]) {
   return updatedGameFrames;
 }
 
-export function getNextFrame(snake: SnakeState) {
+function getNextFrame(snake: SnakeState) {
   const updatedSnake: SnakeState = getUpdatedSnake(snake);
   return {
     updatedCells: getUpdatedGameFrames(updatedSnake.body),
