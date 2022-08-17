@@ -136,7 +136,7 @@ function useSnakeState() {
 }
 
 function SnakeBox({} : SnakeBoxProps) {
-  const [boxWidth, setBoxWidth] = useState();
+  const [boxWidth, setBoxWidth] = useState<number>(0);
   const containerStyle = [styles.container, {height: boxWidth}];
   const { frames } = useSnakeState();
 
