@@ -80,7 +80,7 @@ export function getUpdatedCellPosition(cell: SnakeBodyCell, direction: SnakeDire
 export function getFixedSnakeBody(snakeHead: SnakeBodyCell, snakeBody: SnakeBodyCell[]) {
   return [
     snakeHead,
-    ...snakeBody.slice(0, -1)
+    ...snakeBody.slice(0, -1),
   ]; 
 }
 
