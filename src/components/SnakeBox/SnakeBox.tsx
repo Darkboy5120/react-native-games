@@ -77,12 +77,16 @@ export function getUpdatedCellPosition(cell: SnakeBodyCell, direction: SnakeDire
   return fixedCellPosition;
 }
 
+export function getFixedSnakeBody(snakeHead: SnakeBodyCell, snakeBody: SnakeBodyCell[]) {
+  return [
+    snakeHead,
+    ...snakeBody.slice(0, -1)
+  ]; 
+}
+
 function getUpdatedSnake(snake: SnakeState) {
   const updatedHeadCell = getUpdatedCellPosition(snake.body[0], snake.direction);
-  const updatedSnakeBody = [
-    updatedHeadCell,
-    ...snake.body.slice(0, -1)
-  ];
+  const updatedSnakeBody = getFixedSnakeBody(updatedHeadCell, snake.body);
   return {
     ...snake,
     body: updatedSnakeBody,

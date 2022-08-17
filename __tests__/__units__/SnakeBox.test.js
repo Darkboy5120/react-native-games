@@ -3,6 +3,7 @@ import {
   getInitialCells,
   getFixedCellPosition,
   getUpdatedCellPosition,
+  getFixedSnakeBody,
 } from '../../src/components/SnakeBox/SnakeBox';
 
 test('get updated game frames', () => {
@@ -37,30 +38,39 @@ test('get updated cell position', () => {
   expect(getUpdatedCellPosition([9, 0], 'bottom')).toEqual([0, 0]);
 });
 
-// test('foo', () => {
-//   const inputCells = [
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//   ];
-//   const outputCells = [
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//   ];
-//   expect(getNextFrame(fakeCells)).toBe();
-// });
+test('get updated snake', () => {
+  expect(
+    getFixedSnakeBody(
+      [0, 0],
+      [
+        [1, 0],
+        [2, 0],
+        [2, 1],
+        [2, 2],
+      ],
+    ),
+  ).toEqual([
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [2, 1],
+  ]);
+  expect(
+    getFixedSnakeBody(
+      [8, 8],
+      [
+        [9, 8],
+        [9, 9],
+        [9, 0],
+        [0, 0],
+        [1, 0],
+      ],
+    ),
+  ).toEqual([
+    [8, 8],
+    [9, 8],
+    [9, 9],
+    [9, 0],
+    [0, 0],
+  ]);
+});
