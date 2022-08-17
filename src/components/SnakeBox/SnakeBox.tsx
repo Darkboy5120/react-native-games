@@ -52,14 +52,14 @@ function getInitialState() {
 }
 
 export function getFixedCellPosition(cell: SnakeBodyCell) {
-  let fixedCell: SnakeBodyCell = cell;
+  const fixedCell: SnakeBodyCell = cell;
   if (cell[1] >= _globals.widthDivisor) {
     fixedCell[1] = 0;
-  } else if (cell[1] < 0) {
+  } if (cell[1] < 0) {
     fixedCell[1] = _globals.widthDivisor - 1;
-  } else if (cell[0] >= _globals.heightDivisor) {
+  } if (cell[0] >= _globals.heightDivisor) {
     fixedCell[0] = 0;
-  } else if (cell[0] < 0) {
+  } if (cell[0] < 0) {
     fixedCell[0] = _globals.heightDivisor - 1;
   }
   return fixedCell;
