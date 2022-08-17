@@ -65,7 +65,7 @@ export function getFixedCellPosition(cell: SnakeBodyCell) {
   return fixedCell;
 }
 
-function getUpdatedCellPosition(cell: SnakeBodyCell, direction: SnakeDirection) {
+export function getUpdatedCellPosition(cell: SnakeBodyCell, direction: SnakeDirection) {
   let updatedCell: SnakeBodyCell;
   switch(direction) {
     case "bottom": updatedCell = [cell[0]+=1, cell[1]];break;

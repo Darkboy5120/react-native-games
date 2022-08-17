@@ -2,6 +2,7 @@ import {
   getUpdatedGameFrames,
   getInitialCells,
   getFixedCellPosition,
+  getUpdatedCellPosition,
 } from '../../src/components/SnakeBox/SnakeBox';
 
 test('get updated game frames', () => {
@@ -23,6 +24,17 @@ test('get fixed cell position', () => {
   expect(getFixedCellPosition([0, -1])).toEqual([0, 9]);
   expect(getFixedCellPosition([10, 10])).toEqual([0, 0]);
   expect(getFixedCellPosition([-1, -1])).toEqual([9, 9]);
+});
+
+test('get updated cell position', () => {
+  expect(getUpdatedCellPosition([0, 0], 'right')).toEqual([0, 1]);
+  expect(getUpdatedCellPosition([0, 9], 'right')).toEqual([0, 0]);
+  expect(getUpdatedCellPosition([0, 0], 'left')).toEqual([0, 9]);
+  expect(getUpdatedCellPosition([0, 9], 'left')).toEqual([0, 8]);
+  expect(getUpdatedCellPosition([0, 0], 'top')).toEqual([9, 0]);
+  expect(getUpdatedCellPosition([9, 0], 'top')).toEqual([8, 0]);
+  expect(getUpdatedCellPosition([0, 0], 'bottom')).toEqual([1, 0]);
+  expect(getUpdatedCellPosition([9, 0], 'bottom')).toEqual([0, 0]);
 });
 
 // test('foo', () => {
