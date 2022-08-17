@@ -18,7 +18,7 @@ test('get updated game frames', () => {
 test('get fixed cell position', () => {
   expect(getFixedCellPosition([0, 0])).toEqual([0, 0]);
   expect(getFixedCellPosition([10, 0])).toEqual([0, 0]);
-  expect(getFixedCellPosition([-1, 0])).toEqual([0, 0]);
+  expect(getFixedCellPosition([-1, 0])).toEqual([9, 0]);
   expect(getFixedCellPosition([0, 11])).toEqual([0, 0]);
   expect(getFixedCellPosition([0, -1])).toEqual([0, 9]);
   expect(getFixedCellPosition([10, 10])).toEqual([0, 0]);
